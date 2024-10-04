@@ -25,6 +25,7 @@ def main():
         iteration = 0
 
         # Print table headers
+        print('\n')
         print(f"{'Iteration':<12} {'Lower Bound':<15} {'Upper Bound':<15} {'Root':<15} {'Approx. Error (%)':<20} {'True Error (%)':<15}")
         print("-" * 95)
 

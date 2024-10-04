@@ -25,6 +25,7 @@ def main():
         x = initial_guess  # Starting point for iteration
 
         # Print table headers for better visualization
+        print('\n')
         print(f"{'Iteration':<12} {'Root':<15} {'Approx. Error (%)':<20} {'True Error (%)':<15}")
         print("-" * 60)
 

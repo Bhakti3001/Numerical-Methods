@@ -3,7 +3,7 @@ Author: Bhakti Patel
 Class: MATH/CS 425 with Dr.Panza
 Date Created: 10/04/2024
 Last Edited: 10/04/2024
-Purpose: This is a python file for finding roots using the secant method.
+Purpose: This is a python file for finding roots using the modified secant method.
 """
 
 import numpy as np
@@ -20,7 +20,7 @@ def main():
     # guess 2
     # sc: stopping criterion
     # trueValue: actual root if known (optional)
-    def secant(f, guess1, guess2, sc, trueValue=None):
+    def modified_secant(f, guess1, delta, sc, trueValue=None):
         iteration = 0
 
         # Print table headers for better visualization
@@ -45,17 +45,10 @@ def main():
         print(f"{iteration:<12} {roots[-1]:<15.8f} {'100.00000000':<20} {true_error_str}")
         iteration += 1
 
-        # second iteration outside the loop
-        roots.append(guess2)
-
-        # Print the second iteration
-        true_error_str = f"{true_error:<15.8f}" if true_error is not None else "N/A"
-        print(f"{iteration:<12} {roots[-1]:<15.8f} {'100.00000000':<20} {true_error_str}")
-        iteration += 1
 
         # Continue iterations until the stopping criterion is met
         while approxE[-1] > sc:
-            x_new = guess2 - ((f(guess2)*(guess1-guess2))/(f(guess1)-f(guess2)))  # secant formula
+            x_new = guess1 - ((delta*guess1*f(guess1))/(f(guess1+delta*guess1)-f(guess1)))  # modified secant formula
             roots.append(x_new)
 
             # True error calculation if trueValue is provided
@@ -66,15 +59,14 @@ def main():
             TrueE.append(true_error)
 
             # Approximate error (from the second iteration onward)
-            approx_error = np.abs((x_new - guess2) / x_new) * 100
+            approx_error = np.abs((x_new - guess1) / x_new) * 100
             approxE.append(approx_error)
 
             # Print the current iteration values
             true_error_str = f"{true_error:<15.8f}" if true_error is not None else "N/A"
             print(f"{iteration:<12} {x_new:<15.8f} {approx_error:<20.8f} {true_error_str}")
 
-            guess1 = guess2  
-            guess2 = x_new
+            guess1 = x_new
 
             iteration += 1
 
@@ -83,7 +75,7 @@ def main():
         return x**4 - x - 10
 
     # Call the Newton-Raphson method with the function f, its derivative, stopping criterion (0.01), and initial guess (3)
-    secant(f,1,2, 0.5)
+    modified_secant(f,2,0.00001, 0.5)
 
 
 if __name__ == "__main__":
