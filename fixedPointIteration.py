@@ -70,10 +70,10 @@ def main():
 
     # Example g(x) = rearranged equation
     def g(x):
-        return np.sqrt((1.7*x+2.5)/0.9)
+        return (x+10)/(x+1)
 
     # Call the fixed-point iteration with the function g, stopping criterion (0.01), and initial guess (3)
-    fixedPointIteration(g, 0.01, 3)
+    fixedPointIteration(g, 0.1, 3)
 
 
 if __name__ == "__main__":

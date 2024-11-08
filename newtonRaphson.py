@@ -71,14 +71,14 @@ def main():
 
     # Example function f(x) = your provided function
     def f(x):
-        return -0.9*x**2 + 1.7*x+2.5
+        return np.tan(np.pi*x/5)-2
 
     # Derivative of the function f
     def f_prime(x):
-        return -1.8*x+1.7
+        return (1/(np.cos(np.pi*x/5))**2)*(np.pi/5)
 
     # Call the Newton-Raphson method with the function f, its derivative, stopping criterion (0.01), and initial guess (3)
-    newtonRaphson(f, f_prime, 0.01, 3)
+    newtonRaphson(f, f_prime, 0.1, 1.2, 1.762081911747834)
 
 
 if __name__ == "__main__":

@@ -89,10 +89,10 @@ def main():
 
     # The function we're finding the root for
     def f(x):
-        return 35000 * ((x*(1+x)**7)/((1+x)**7-1)) - 8500
+        return np.tan(np.pi*x/5)-2
 
     # Call the bisection method with the function f, a stopping criterion (0.005), and initial bounds (0.1, 0.2)
-    bisection(f, 0.005, 0.1, 0.2)
+    bisection(f, 0.1, 1, 2,1.762081911747834)
 
 if __name__ == "__main__":
     main()
